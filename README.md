@@ -24,3 +24,19 @@ addition, you will have to run multiple models in a series to have a completed b
 Design and implement a ML pipeline for this task. It doesn’t have to be complete, use 
 illustrations and diagrams to complete your project.
 
+  ## Quick Start
+
+  ### Prerequisites
+  - Python 3.11+
+  - [uv](https://github.com/astral-sh/uv) (recommended) or pip
+  - Docker & Docker Compose
+
+  ### Local Development Setup
+
+  #### Using uv (Recommended)
+  ```bash
+  # Install dependencies
+  uv sync
+
+  # Run the application
+  uv run python -m src.api.app
