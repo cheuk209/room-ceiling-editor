@@ -15,6 +15,7 @@ The components are as follows:
 3. Air return points
 4. Smoke detectors
 5. Invalid ceiling grids – Empty but not valid position for any components.
+
 We have a machine learning pipeline that supports multiple models that take the input 
 ceiling grid data (may or may not be with components) and use multiple machine learning 
 models to generate the result. In some cases, you will have multiple models that does the 
@@ -22,3 +23,4 @@ same task that is multiple models for placing lights and picks out the best or v
 addition, you will have to run multiple models in a series to have a completed building json.
 Design and implement a ML pipeline for this task. It doesn’t have to be complete, use 
 illustrations and diagrams to complete your project.
+
