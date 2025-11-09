@@ -71,9 +71,9 @@ def test_light_model_a():
     assert lights > 0, "❌ No lights placed"
     print(f"   ✅ Lights were placed")
 
-    # Dense model should place ~35-40% coverage
-    assert 20 <= lights <= 50, f"❌ Unexpected number of lights: {lights}"
-    print(f"   ✅ Light count reasonable for dense strategy")
+    # With spacing constraints, expect 10-25% coverage (sparser than before)
+    assert 5 <= lights <= 30, f"❌ Unexpected number of lights: {lights}"
+    print(f"   ✅ Light count reasonable for dense strategy (with spacing)")
 
     # Check no lights on invalid cells
     for cell in result.grid.cells:
@@ -82,6 +82,16 @@ def test_light_model_a():
             assert original_cell.component != ComponentType.INVALID, \
                 f"❌ Light placed on invalid cell at ({cell.x}, {cell.y})"
     print(f"   ✅ No lights on invalid cells")
+
+    # Check spacing constraint (MIN_LIGHT_SPACING = 2)
+    light_positions = [(c.x, c.y) for c in result.grid.cells if c.component == ComponentType.LIGHT]
+    for i, (x1, y1) in enumerate(light_positions):
+        for j, (x2, y2) in enumerate(light_positions):
+            if i != j:
+                distance = abs(x1 - x2) + abs(y1 - y2)
+                assert distance >= 2, \
+                    f"❌ Lights at ({x1},{y1}) and ({x2},{y2}) too close (distance={distance})"
+    print(f"   ✅ All lights respect minimum spacing (≥2)")
 
     print(f"\n{'=' * 60}")
     print("🎉 All tests passed! LightModelA is working correctly.")
